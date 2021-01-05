@@ -15,7 +15,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivityOld : AppCompatActivity(R.layout.activity_main_old) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     progressBar.visibility = View.GONE
                     recyclerView.visibility = View.GONE
 
-                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT)
+                    Toast.makeText(this@MainActivityOld, message, Toast.LENGTH_SHORT)
                         .show()
                 }
 
