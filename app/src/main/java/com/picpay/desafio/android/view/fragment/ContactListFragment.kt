@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.view
+package com.picpay.desafio.android.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
