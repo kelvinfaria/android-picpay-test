@@ -1,6 +1,7 @@
 package com.picpay.desafio.android.base
 
 import android.app.Application
+import com.picpay.desafio.android.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,7 +12,9 @@ class App: Application() {
         startKoin {
             androidContext(this@App)
             modules(
-                listOf()
+                listOf(
+                    networkModule
+                )
             )
         }
     }
