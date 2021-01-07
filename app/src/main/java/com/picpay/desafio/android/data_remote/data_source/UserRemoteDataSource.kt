@@ -4,7 +4,7 @@ import com.picpay.desafio.android.data.data_source.remote.UserRemoteDataSourceIn
 import com.picpay.desafio.android.data_remote.mapper.UserMapper
 import com.picpay.desafio.android.data_remote.service.PicPayService
 import com.picpay.desafio.android.data_remote.utils.RequestWrapperInterface
-import com.picpay.desafio.android.domain.UserDomain
+import com.picpay.desafio.android.domain.model.UserDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

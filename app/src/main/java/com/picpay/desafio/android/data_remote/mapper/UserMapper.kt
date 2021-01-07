@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.data_remote.mapper
 
 import com.picpay.desafio.android.data_remote.model.UserResponse
-import com.picpay.desafio.android.domain.UserDomain
+import com.picpay.desafio.android.domain.model.UserDomain
 
 object UserMapper {
 
