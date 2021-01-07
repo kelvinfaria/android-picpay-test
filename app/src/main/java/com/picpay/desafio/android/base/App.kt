@@ -1,6 +1,8 @@
 package com.picpay.desafio.android.base
 
 import android.app.Application
+import com.picpay.desafio.android.di.dataLocalModule
+import com.picpay.desafio.android.di.dataModule
 import com.picpay.desafio.android.di.dataRemoteModule
 import com.picpay.desafio.android.di.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +17,9 @@ class App: Application() {
             modules(
                 listOf(
                     networkModule,
-                    dataRemoteModule
+                    dataRemoteModule,
+                    dataLocalModule,
+                    dataModule
                 )
             ).androidContext(applicationContext)
         }

@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.domain
+package com.picpay.desafio.android.domain.model
 
 data class UserDomain (
     val img: String,
