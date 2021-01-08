@@ -1,15 +1,15 @@
-package com.picpay.desafio.android.presentation.utils.extensions
+package com.picpay.desafio.android.base_feature.presentation.utils.extensions
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.picpay.desafio.android.presentation.utils.EventLiveData
-import com.picpay.desafio.android.presentation.utils.ViewState
-import com.picpay.desafio.android.presentation.utils.ViewState.Status.*
-import com.picpay.desafio.android.presentation.utils.isLoading
-import com.picpay.desafio.android.presentation.utils.isSuccess
-import com.picpay.desafio.android.presentation.utils.isError
+import com.picpay.desafio.android.base_feature.presentation.utils.EventLiveData
+import com.picpay.desafio.android.base_feature.presentation.utils.ViewState
+import com.picpay.desafio.android.base_feature.presentation.utils.ViewState.Status.*
+import com.picpay.desafio.android.base_feature.presentation.utils.isLoading
+import com.picpay.desafio.android.base_feature.presentation.utils.isSuccess
+import com.picpay.desafio.android.base_feature.presentation.utils.isError
 
 
 fun <T> MutableLiveData<ViewState<T>>.postNeutral() {
