@@ -4,7 +4,7 @@ import com.picpay.desafio.android.data.data_source.remote.UserRemoteDataSourceIn
 import com.picpay.desafio.android.data_remote.mapper.UserMapper
 import com.picpay.desafio.android.data_remote.service.PicPayService
 import com.picpay.desafio.android.data_remote.utils.RequestWrapperInterface
-import com.picpay.desafio.android.domain.model.UserDomain
+import com.picpay.desafio.android.domain.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -13,7 +13,7 @@ class UserRemoteDataSource(
     private val requestWrapper: RequestWrapperInterface
 ) : UserRemoteDataSourceInterface {
 
-    override fun getUsers(): Flow<List<UserDomain>> = flow {
+    override fun getUsers(): Flow<List<User>> = flow {
         emit(
             UserMapper.toDomain(
                 requestWrapper.wrapper {
