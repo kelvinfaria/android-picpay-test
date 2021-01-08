@@ -1,12 +1,12 @@
-package com.picpay.desafio.android.presentation
+package com.picpay.desafio.android.feature_contact.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.picpay.desafio.android.domain.interactor.GetUsers
-import com.picpay.desafio.android.presentation.mapper.UserBindingMapper
-import com.picpay.desafio.android.presentation.model.UserBinding
-import com.picpay.desafio.android.presentation.utils.extensions.*
-import com.picpay.desafio.android.presentation.utils.isLoading
+import com.picpay.desafio.android.base_feature.presentation.mapper.UserBindingMapper
+import com.picpay.desafio.android.base_feature.presentation.model.UserBinding
+import com.picpay.desafio.android.base_feature.presentation.utils.extensions.*
+import com.picpay.desafio.android.base_feature.presentation.utils.isLoading
 import org.koin.core.KoinComponent
 
 class ContactListViewModel (application: Application) : AndroidViewModel(application), KoinComponent {

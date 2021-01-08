@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.presentation.utils
+package com.picpay.desafio.android.base_feature.presentation.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

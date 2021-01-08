@@ -1,8 +1,9 @@
-package com.picpay.desafio.android.presentation.utils
+package com.picpay.desafio.android.base_feature.view.utils
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import com.picpay.desafio.android.presentation.utils.extensions.observeLiveData
+import com.picpay.desafio.android.base_feature.presentation.utils.ViewState
+import com.picpay.desafio.android.base_feature.presentation.utils.extensions.observeLiveData
 
 interface ViewStateListener {
 

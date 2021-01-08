@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.base
+package com.picpay.desafio.android.app
 
 import android.app.Application
 import com.picpay.desafio.android.di.*

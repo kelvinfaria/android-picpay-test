@@ -10,7 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.picpay.desafio.android.data_remote.model.UserResponse
 import com.picpay.desafio.android.data_remote.service.PicPayService
-import com.picpay.desafio.android.view.adapter.UserListAdapter
+import com.picpay.desafio.android.feature_contact.view.adapter.UserListAdapter
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
