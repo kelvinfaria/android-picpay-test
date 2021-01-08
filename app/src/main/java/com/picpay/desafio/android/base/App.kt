@@ -17,7 +17,8 @@ class App: Application() {
                     dataRemoteModule,
                     dataLocalModule,
                     dataModule,
-                    domainModule
+                    domainModule,
+                    presentationModule
                 )
             ).androidContext(applicationContext)
         }

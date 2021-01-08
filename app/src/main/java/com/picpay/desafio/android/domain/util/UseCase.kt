@@ -7,7 +7,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.lang.Exception
 
-abstract class UseCase<T, in Params>(private val scope: CoroutineScope): KoinComponent {
+abstract class UseCase<T, in Params>(private val scope: CoroutineScope) : KoinComponent {
 
     private val contextProvider: ThreadContextProvider by inject()
 
@@ -15,8 +15,8 @@ abstract class UseCase<T, in Params>(private val scope: CoroutineScope): KoinCom
 
     operator fun invoke(
         params: Params? = null,
-        onError: ((Throwable) -> Unit) = {},
-        onSuccess: (T) -> Unit = {}
+        onSuccess: (T) -> Unit = {},
+        onError: ((Throwable) -> Unit) = {}
     ) {
         scope.launch(contextProvider.io) {
             try {
