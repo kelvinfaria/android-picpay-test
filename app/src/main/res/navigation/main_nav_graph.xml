@@ -7,12 +7,14 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.picpay.desafio.android.base_feature.view.utils.SplashFragment"
+        android:name="com.picpay.desafio.android.base_feature.view.SplashFragment"
         android:label="@string/empty_string"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_contactListFragment"
-            app:destination="@id/contactListFragment" />
+            app:destination="@id/contactListFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
