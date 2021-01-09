@@ -29,15 +29,15 @@ class ContactListFragment : BaseFragment() {
 
         viewModel.contactListLiveData.onPostValue(owner,
             onLoading = {
-                userListProgressBar.setVisible()
+                contactListProgressBar.setVisible()
             },
             onSuccess = {
-                userListProgressBar.setGone()
+                contactListProgressBar.setGone()
                 userListAdapter.userList = it
                 recyclerView.adapter = userListAdapter
             },
             onError = {
-                userListProgressBar.setGone()
+                contactListProgressBar.setGone()
                 showSimpleDialog(
                     title = "Error",
                     message = "Ocorreu um erro inesperado, tente novamente mais tarde"
