@@ -3,11 +3,12 @@ package com.picpay.desafio.android.feature_contact.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.base_feature.presentation.model.UserBinding
+import com.picpay.desafio.android.base_feature.view.utils.extensions.setGone
+import com.picpay.desafio.android.base_feature.view.utils.extensions.setVisible
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_user.view.*
@@ -16,8 +17,14 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
 
     var userList = emptyList<UserBinding>()
         set(value) {
+            val result = DiffUtil.calculateDiff(
+                UserListDiffCallback(
+                    field,
+                    value
+                )
+            )
+            result.dispatchUpdatesTo(this)
             field = value
-            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserListItemViewHolder =
@@ -36,17 +43,17 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
         fun bind(user: UserBinding) {
             itemView.name.text = user.name
             itemView.username.text = user.username
-            itemView.progressBar.isVisible
+            itemView.progressBar.setVisible()
             Picasso.get()
                 .load(user.img)
                 .error(R.drawable.ic_round_account_circle)
                 .into(itemView.picture, object : Callback {
                     override fun onSuccess() {
-                        itemView.progressBar.isGone
+                        itemView.progressBar.setGone()
                     }
 
                     override fun onError(e: Exception?) {
-                        itemView.progressBar.isGone
+                        itemView.progressBar.setGone()
                     }
                 })
         }
