@@ -18,7 +18,8 @@ class App: Application() {
                     dataLocalModule,
                     dataModule,
                     domainModule,
-                    presentationModule
+                    presentationModule,
+                    navigationModule
                 )
             ).androidContext(applicationContext)
         }
