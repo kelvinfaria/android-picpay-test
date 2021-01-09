@@ -26,24 +26,24 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
 
     open fun addObservers(owner: LifecycleOwner) = Unit
 
-    override fun hideLoading() {
-        loadingDialogFragment.dismissAllowingStateLoss()
-    }
-
-    override fun onStateLoading() {
-        hideLoading()
-        childFragmentManager.let { loadingDialogFragment.show(this) }
-    }
-
-    override fun onStateError(error: Throwable) {
-        hideLoading()
-        error.message?.let {
-            showSimpleDialog(
-                title = "Error",
-                message = "Ocorreu um erro inesperado, tente novamente mais tarde"
-            )
-        }
-    }
+//    override fun hideLoading() {
+//        loadingDialogFragment.dismissAllowingStateLoss()
+//    }
+//
+//    override fun onStateLoading() {
+//        hideLoading()
+//        childFragmentManager.let { loadingDialogFragment.show(this) }
+//    }
+//
+//    override fun onStateError(error: Throwable) {
+//        hideLoading()
+//        error.message?.let {
+//            showSimpleDialog(
+//                title = "Error",
+//                message = "Ocorreu um erro inesperado, tente novamente mais tarde"
+//            )
+//        }
+//    }
 
     fun showSimpleDialog(
         title: String,

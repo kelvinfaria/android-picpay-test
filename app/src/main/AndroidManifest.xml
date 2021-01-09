@@ -16,10 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivityOld"></activity>
-
-        <activity android:name=".app.MainActivity"
-                  android:screenOrientation="locked">
+        <activity android:name=".app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
