@@ -14,4 +14,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="LoadingFragmentStyle" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/colorDetail</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>
