@@ -7,12 +7,6 @@ import com.picpay.desafio.android.base_feature.presentation.utils.extensions.obs
 
 interface ViewStateListener {
 
-//    fun hideLoading()
-
-//    fun onStateLoading()
-
-//    fun onStateError(error: Throwable)
-
     private fun <T> ViewState<T>.handle(
         onLoading: (() -> Unit)? = null,
         onSuccess: ((T) -> Unit)? = null,
@@ -25,12 +19,10 @@ interface ViewStateListener {
                 onLoading?.invoke()
             },
             onSuccess = {
-//                hideLoading()
                 onSuccess?.invoke(it)
                 onComplete?.invoke()
             },
             onError = { error ->
-//                hideLoading()
                 onError?.invoke(error)
                 onComplete?.invoke()
             }

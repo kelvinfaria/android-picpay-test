@@ -10,8 +10,6 @@ import org.koin.core.KoinComponent
 
 abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
 
-    private val loadingDialogFragment = LoadingFragment()
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         addObservers(viewLifecycleOwner)
@@ -25,25 +23,6 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
     open fun setupView() = Unit
 
     open fun addObservers(owner: LifecycleOwner) = Unit
-
-//    override fun hideLoading() {
-//        loadingDialogFragment.dismissAllowingStateLoss()
-//    }
-//
-//    override fun onStateLoading() {
-//        hideLoading()
-//        childFragmentManager.let { loadingDialogFragment.show(this) }
-//    }
-//
-//    override fun onStateError(error: Throwable) {
-//        hideLoading()
-//        error.message?.let {
-//            showSimpleDialog(
-//                title = "Error",
-//                message = "Ocorreu um erro inesperado, tente novamente mais tarde"
-//            )
-//        }
-//    }
 
     fun showSimpleDialog(
         title: String,

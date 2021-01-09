@@ -35,7 +35,6 @@ class ContactListFragment : BaseFragment() {
                 userListProgressBar.setGone()
                 userListAdapter.userList = it
                 recyclerView.adapter = userListAdapter
-
             },
             onError = {
                 userListProgressBar.setGone()
