@@ -1,11 +1,10 @@
-package com.picpay.desafio.android.domain.repository
+package com.picpay.desafio.android.data.data_source.local
 
 import com.picpay.desafio.android.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
-interface UserRepositoryInterface {
+interface UserLocalDataSourceInterface {
 
-    fun getUserListRemotely(): Flow<List<User>>
     fun saveUserListLocally(userList: List<User>)
     fun getUserListLocally()
 }

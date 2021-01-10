@@ -13,11 +13,11 @@ class UserRemoteDataSource(
     private val requestWrapper: RequestWrapperInterface
 ) : UserRemoteDataSourceInterface {
 
-    override fun getUsers(): Flow<List<User>> = flow {
+    override fun getUserListRemotely(): Flow<List<User>> = flow {
         emit(
             UserMapper.toDomain(
                 requestWrapper.wrapper {
-                    picPayService.getUsers()
+                    picPayService.getUserList()
                 }
             )
         )

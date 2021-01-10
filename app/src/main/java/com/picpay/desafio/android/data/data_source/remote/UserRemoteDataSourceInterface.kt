@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRemoteDataSourceInterface {
 
-    fun getUsers(): Flow<List<User>>
+    fun getUserListRemotely(): Flow<List<User>>
 }

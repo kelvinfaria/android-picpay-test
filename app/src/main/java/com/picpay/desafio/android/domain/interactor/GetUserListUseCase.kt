@@ -6,12 +6,12 @@ import com.picpay.desafio.android.domain.util.UseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
-class GetUsers(
+class GetUserListUseCase(
     scope: CoroutineScope,
     private val userRepositoryInterface: UserRepositoryInterface
 ) : UseCase<List<User>, Unit>(scope) {
 
     override fun run(params: Unit?): Flow<List<User>> {
-        return userRepositoryInterface.getUsersRemotely()
+        return userRepositoryInterface.getUserListRemotely()
     }
 }
