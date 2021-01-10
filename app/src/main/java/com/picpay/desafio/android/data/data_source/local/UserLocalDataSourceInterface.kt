@@ -7,4 +7,5 @@ interface UserLocalDataSourceInterface {
 
     fun saveUserListLocally(userList: UserList): Flow<Unit>
     fun getUserListLocally(): Flow<UserList>?
+    fun clearLocalUserList(): Flow<Unit>
 }

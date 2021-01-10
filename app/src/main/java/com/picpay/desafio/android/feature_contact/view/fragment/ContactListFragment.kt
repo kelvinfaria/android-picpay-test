@@ -31,6 +31,10 @@ class ContactListFragment : BaseFragment() {
         swipeContainer.setOnRefreshListener {
             viewModel.getContactList(isRefreshing = true)
         }
+
+        clearListButton.setOnClickListener {
+            viewModel.clearLocalUserList()
+        }
     }
 
     override fun addObservers(owner: LifecycleOwner) {
@@ -49,9 +53,28 @@ class ContactListFragment : BaseFragment() {
                 showOptionDialog(
                     title = "Error",
                     message = "Deseja realizar uma nova requisição?",
-                    positveAction = { viewModel.getContactList(isRefreshing = true) }
+                    positiveAction = { viewModel.getContactList(isRefreshing = true) }
                 )
             }
         )
+
+        viewModel.saveContactListLiveData.onPostValue(owner,
+            onSuccess = {
+                clearListButton.setVisible()
+            }
+        )
+
+        viewModel.clearContactListLiveData.onPostValue(owner,
+            onSuccess = {
+                clearListButton.setGone()
+                userListAdapter.userList = listOf()
+                recyclerView.adapter = userListAdapter
+            }
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.clearViewState()
     }
 }

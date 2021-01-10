@@ -33,6 +33,12 @@ class UserLocalDataSource(
         }
     }
 
+    override fun clearLocalUserList(): Flow<Unit> = flow {
+        emit(
+            preferencesHelper.deleteKey(USER_LIST)
+        )
+    }
+
     companion object {
         const val USER_LIST = "user_list"
     }

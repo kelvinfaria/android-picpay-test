@@ -25,4 +25,7 @@ class UserRepository(
 
     private fun getUserListLocally(): Flow<UserList>? =
         userLocalDataSourceInterface.getUserListLocally()
+
+    override fun clearLocalUserList(): Flow<Unit> =
+        userLocalDataSourceInterface.clearLocalUserList()
 }
