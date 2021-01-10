@@ -24,8 +24,7 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
 
     val contactListLiveData = contactListViewState.asLiveData()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun getContactList() {
+    fun getContactList(isRefreshing: Boolean = false) {
         if (contactListViewState.value.isLoading()) return
 
         contactListViewState.postLoading()

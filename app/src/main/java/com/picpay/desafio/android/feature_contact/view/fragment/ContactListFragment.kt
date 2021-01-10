@@ -24,6 +24,15 @@ class ContactListFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_contact_list, container, false)
 
+    override fun setupView() {
+        super.setupView()
+        viewModel.getContactList()
+
+        swipeContainer.setOnRefreshListener {
+            viewModel.getContactList()
+        }
+    }
+
     override fun addObservers(owner: LifecycleOwner) {
         lifecycle.addObserver(viewModel)
 
@@ -32,12 +41,14 @@ class ContactListFragment : BaseFragment() {
                 contactListProgressBar.setVisible()
             },
             onSuccess = {
+                swipeContainer.isRefreshing = false
                 contactListProgressBar.setGone()
                 userListAdapter.userList = it.list
                 recyclerView.adapter = userListAdapter
             },
             onError = {
                 contactListProgressBar.setGone()
+                swipeContainer.isRefreshing = false
                 showSimpleDialog(
                     title = "Error",
                     message = "Ocorreu um erro inesperado, tente novamente mais tarde"
