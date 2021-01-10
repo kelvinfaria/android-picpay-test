@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserLocalDataSourceInterface {
 
-    fun saveUserListLocally(userList: UserList)
+    fun saveUserListLocally(userList: UserList): Flow<Unit>
     fun getUserListLocally(): Flow<UserList>?
 }

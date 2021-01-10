@@ -31,7 +31,9 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
         contactListViewState.postLoading()
         getUserListUseCase(
             onSuccess = {
-                saveContactListLocally(it)
+                if (!it.isLocal) {
+                    saveContactListLocally(it)
+                }
                 contactListViewState.postSuccess(UserBindingMapper.fromDomain(it))
             },
             onError = {

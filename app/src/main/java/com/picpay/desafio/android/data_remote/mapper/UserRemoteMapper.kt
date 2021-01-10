@@ -8,7 +8,8 @@ object UserRemoteMapper {
 
     fun toDomain(userList: List<UserResponse>): UserList {
         return UserList(
-            list = parseUserList(userList)
+            list = parseUserList(userList),
+            isLocal = false
         )
     }
 

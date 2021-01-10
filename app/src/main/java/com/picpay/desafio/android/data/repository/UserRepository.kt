@@ -13,10 +13,18 @@ class UserRepository(
 ) : UserRepositoryInterface {
 
     override fun getUserList(): Flow<UserList> {
-        return userLocalDataSourceInterface.getUserListLocally() ?: userRemoteDataSourceInterface.getUserListRemotely()
+        return getUserListLocally() ?: getUserListRemotely()
     }
 
-    override fun saveUserListLocally(userList: UserList) = flow {
-        emit(userLocalDataSourceInterface.saveUserListLocally(userList))
+    override fun saveUserListLocally(userList: UserList): Flow<Unit> {
+        return userLocalDataSourceInterface.saveUserListLocally(userList)
+    }
+
+    private fun getUserListRemotely(): Flow<UserList> {
+        return userRemoteDataSourceInterface.getUserListRemotely()
+    }
+
+    private fun getUserListLocally(): Flow<UserList>? {
+        return userLocalDataSourceInterface.getUserListLocally()
     }
 }
