@@ -24,12 +24,20 @@ class ContactListFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_contact_list, container, false)
 
-    override fun addObservers(owner: LifecycleOwner) {
-        lifecycle.addObserver(viewModel)
+    override fun setupView() {
+        super.setupView()
+        viewModel.getContactList()
 
+        swipeContainer.setOnRefreshListener {
+            viewModel.getContactList(isRefreshing = true)
+        }
+    }
+
+    override fun addObservers(owner: LifecycleOwner) {
         viewModel.contactListLiveData.onPostValue(owner,
             onLoading = {
                 contactListProgressBar.setVisible()
+                swipeContainer.isRefreshing = false
             },
             onSuccess = {
                 contactListProgressBar.setGone()
@@ -38,9 +46,10 @@ class ContactListFragment : BaseFragment() {
             },
             onError = {
                 contactListProgressBar.setGone()
-                showSimpleDialog(
+                showOptionDialog(
                     title = "Error",
-                    message = "Ocorreu um erro inesperado, tente novamente mais tarde"
+                    message = "Deseja realizar uma nova requisição?",
+                    positveAction = { viewModel.getContactList(isRefreshing = true) }
                 )
             }
         )

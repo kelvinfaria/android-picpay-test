@@ -39,4 +39,24 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
             show()
         }
     }
+
+    fun showOptionDialog(
+        title: String,
+        message: String,
+        positveAction: () -> Unit = {},
+        negativeAction: () -> Unit = {}
+    ) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle(title)
+            setMessage(message)
+            setPositiveButton("Sim") { _, _ ->
+                positveAction
+            }
+            setNegativeButton("Não") { _, _ ->
+                negativeAction
+            }
+            show()
+        }
+    }
 }

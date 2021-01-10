@@ -2,9 +2,6 @@ package com.picpay.desafio.android.feature_contact.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import com.picpay.desafio.android.domain.interactor.GetUserListUseCase
 import com.picpay.desafio.android.base_feature.presentation.mapper.UserBindingMapper
 import com.picpay.desafio.android.base_feature.presentation.model.UserListBinding
@@ -14,8 +11,8 @@ import com.picpay.desafio.android.domain.interactor.SaveUserListLocallyUseCase
 import com.picpay.desafio.android.domain.model.UserList
 import org.koin.core.KoinComponent
 
-class ContactListViewModel(application: Application) : AndroidViewModel(application), KoinComponent,
-    LifecycleObserver {
+class ContactListViewModel(application: Application) : AndroidViewModel(application),
+    KoinComponent {
 
     private val getUserListUseCase: GetUserListUseCase by useCase()
     private val saveUserListLocallyUseCase: SaveUserListLocallyUseCase by useCase()
@@ -24,12 +21,14 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
 
     val contactListLiveData = contactListViewState.asLiveData()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun getContactList() {
+    fun getContactList(isRefreshing: Boolean = false) {
         if (contactListViewState.value.isLoading()) return
 
         contactListViewState.postLoading()
         getUserListUseCase(
+            params = GetUserListUseCase.Param(
+                isRefreshing = isRefreshing
+            ),
             onSuccess = {
                 if (!it.isLocal) {
                     saveContactListLocally(it)

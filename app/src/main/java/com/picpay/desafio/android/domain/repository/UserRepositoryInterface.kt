@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepositoryInterface {
 
-    fun getUserList(): Flow<UserList>
+    fun getUserList(isRefreshing: Boolean): Flow<UserList>
     fun saveUserListLocally(userList: UserList): Flow<Unit>
 }
