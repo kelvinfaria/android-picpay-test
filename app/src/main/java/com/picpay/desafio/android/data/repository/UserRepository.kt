@@ -12,19 +12,17 @@ class UserRepository(
     private val userLocalDataSourceInterface: UserLocalDataSourceInterface
 ) : UserRepositoryInterface {
 
-    override fun getUserList(): Flow<UserList> {
-        return getUserListLocally() ?: getUserListRemotely()
+    override fun getUserList(isRefreshing: Boolean): Flow<UserList> = when (isRefreshing) {
+        true -> getUserListRemotely()
+        false -> getUserListLocally() ?: getUserListRemotely()
     }
 
-    override fun saveUserListLocally(userList: UserList): Flow<Unit> {
-        return userLocalDataSourceInterface.saveUserListLocally(userList)
-    }
+    override fun saveUserListLocally(userList: UserList): Flow<Unit> =
+        userLocalDataSourceInterface.saveUserListLocally(userList)
 
-    private fun getUserListRemotely(): Flow<UserList> {
-        return userRemoteDataSourceInterface.getUserListRemotely()
-    }
+    private fun getUserListRemotely(): Flow<UserList> =
+        userRemoteDataSourceInterface.getUserListRemotely()
 
-    private fun getUserListLocally(): Flow<UserList>? {
-        return userLocalDataSourceInterface.getUserListLocally()
-    }
+    private fun getUserListLocally(): Flow<UserList>? =
+        userLocalDataSourceInterface.getUserListLocally()
 }

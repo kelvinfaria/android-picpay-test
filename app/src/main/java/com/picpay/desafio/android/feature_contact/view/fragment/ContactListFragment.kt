@@ -29,29 +29,27 @@ class ContactListFragment : BaseFragment() {
         viewModel.getContactList()
 
         swipeContainer.setOnRefreshListener {
-            viewModel.getContactList()
+            viewModel.getContactList(isRefreshing = true)
         }
     }
 
     override fun addObservers(owner: LifecycleOwner) {
-        lifecycle.addObserver(viewModel)
-
         viewModel.contactListLiveData.onPostValue(owner,
             onLoading = {
                 contactListProgressBar.setVisible()
+                swipeContainer.isRefreshing = false
             },
             onSuccess = {
-                swipeContainer.isRefreshing = false
                 contactListProgressBar.setGone()
                 userListAdapter.userList = it.list
                 recyclerView.adapter = userListAdapter
             },
             onError = {
                 contactListProgressBar.setGone()
-                swipeContainer.isRefreshing = false
-                showSimpleDialog(
+                showOptionDialog(
                     title = "Error",
-                    message = "Ocorreu um erro inesperado, tente novamente mais tarde"
+                    message = "Deseja realizar uma nova requisição?",
+                    positveAction = { viewModel.getContactList(isRefreshing = true) }
                 )
             }
         )
