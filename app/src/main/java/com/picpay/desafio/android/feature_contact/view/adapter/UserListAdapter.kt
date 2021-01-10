@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.base_feature.presentation.model.UserBinding
-import com.picpay.desafio.android.base_feature.view.utils.extensions.setGone
-import com.picpay.desafio.android.base_feature.view.utils.extensions.setVisible
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
+import com.picpay.desafio.android.base_feature.view.utils.extensions.setImageWithLoading
 import kotlinx.android.synthetic.main.list_item_user.view.*
 
 class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHolder>() {
@@ -43,19 +40,11 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserListItemViewHol
         fun bind(user: UserBinding) {
             itemView.name.text = user.name
             itemView.username.text = user.username
-            itemView.progressBar.setVisible()
-            Picasso.get()
-                .load(user.img)
-                .error(R.drawable.ic_round_account_circle)
-                .into(itemView.picture, object : Callback {
-                    override fun onSuccess() {
-                        itemView.progressBar.setGone()
-                    }
-
-                    override fun onError(e: Exception?) {
-                        itemView.progressBar.setGone()
-                    }
-                })
+            itemView.picture.setImageWithLoading(
+                progressBar = itemView.progressBar,
+                load = user.img,
+                error = R.drawable.ic_round_account_circle
+            )
         }
     }
 }
