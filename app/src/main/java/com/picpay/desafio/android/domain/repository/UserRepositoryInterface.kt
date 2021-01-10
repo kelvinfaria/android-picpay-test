@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepositoryInterface {
 
-    fun getUserListRemotely(): Flow<UserList>
-    fun saveUserListLocally(userList: UserList)
-    fun getUserListLocally()
+    fun getUserList(): Flow<UserList>
+    fun saveUserListLocally(userList: UserList): Flow<Unit>
 }
