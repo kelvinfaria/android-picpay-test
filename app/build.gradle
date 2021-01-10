@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
-
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -94,4 +93,7 @@ dependencies {
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
+    //Security
+    implementation "androidx.security:security-crypto:$security_crypto_version"
 }

@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface PicPayService {
 
     @GET(USERS)
-    fun getUsers(): Call<List<UserResponse>>
+    fun getUserList(): Call<List<UserResponse>>
 }
 
 const val USERS = "users"

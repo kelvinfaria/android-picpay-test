@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
-    single<UserRepositoryInterface> { UserRepository(get()) }
+    single<UserRepositoryInterface> { UserRepository(get(), get()) }
 }
