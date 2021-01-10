@@ -33,7 +33,7 @@ class ContactListFragment : BaseFragment() {
             },
             onSuccess = {
                 contactListProgressBar.setGone()
-                userListAdapter.userList = it
+                userListAdapter.userList = it.list
                 recyclerView.adapter = userListAdapter
             },
             onError = {

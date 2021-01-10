@@ -8,6 +8,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.picpay.desafio.android.domain.interactor.GetUserListUseCase
 import com.picpay.desafio.android.base_feature.presentation.mapper.UserBindingMapper
 import com.picpay.desafio.android.base_feature.presentation.model.UserBinding
+import com.picpay.desafio.android.base_feature.presentation.model.UserListBinding
 import com.picpay.desafio.android.base_feature.presentation.utils.extensions.*
 import com.picpay.desafio.android.base_feature.presentation.utils.isLoading
 import org.koin.core.KoinComponent
@@ -17,7 +18,7 @@ class ContactListViewModel (application: Application) : AndroidViewModel(applica
 
     private val getUserListUseCase: GetUserListUseCase by useCase()
 
-    private val contactListViewState by viewState<List<UserBinding>>()
+    private val contactListViewState by viewState<UserListBinding>()
 
     val contactListLiveData = contactListViewState.asLiveData()
 
