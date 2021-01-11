@@ -10,5 +10,7 @@ class ClearLocalUserListUseCase(
     private val userRepositoryInterface: UserRepositoryInterface
 ) : UseCase<Unit, Unit>(scope) {
 
-    override fun run(params: Unit?): Flow<Unit> = userRepositoryInterface.clearLocalUserList()
+    override fun run(params: Unit?): Flow<Unit>  {
+        return userRepositoryInterface.clearLocalUserList()
+    }
 }

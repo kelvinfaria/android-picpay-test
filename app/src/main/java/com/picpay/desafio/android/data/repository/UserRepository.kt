@@ -13,8 +13,12 @@ class UserRepository(
 ) : UserRepositoryInterface {
 
     override fun getUserList(isRefreshing: Boolean): Flow<UserList> = when (isRefreshing) {
-        true -> getUserListRemotely()
-        false -> getUserListLocally() ?: getUserListRemotely()
+        true -> {
+            getUserListRemotely()
+        }
+        false -> {
+            getUserListLocally() ?: getUserListRemotely()
+        }
     }
 
     override fun saveUserListLocally(userList: UserList): Flow<Unit> =

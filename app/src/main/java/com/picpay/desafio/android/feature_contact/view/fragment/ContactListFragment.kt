@@ -26,7 +26,9 @@ class ContactListFragment : BaseFragment() {
 
     override fun setupView() {
         super.setupView()
-        viewModel.getContactList()
+        if (viewModel.firstLaunch) {
+            viewModel.getContactList()
+        }
 
         swipeContainer.setOnRefreshListener {
             viewModel.getContactList(isRefreshing = true)
@@ -71,10 +73,5 @@ class ContactListFragment : BaseFragment() {
                 recyclerView.adapter = userListAdapter
             }
         )
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewModel.clearViewState()
     }
 }

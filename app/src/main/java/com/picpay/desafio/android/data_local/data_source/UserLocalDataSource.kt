@@ -28,8 +28,16 @@ class UserLocalDataSource(
         )
 
         return when (userList) {
-            null -> null
-            else -> flow { emit(UserLocalMapper.toDomain(userList)) }
+            null -> {
+                null
+            }
+            else -> {
+                flow {
+                    emit(
+                        UserLocalMapper.toDomain(userList)
+                    )
+                }
+            }
         }
     }
 

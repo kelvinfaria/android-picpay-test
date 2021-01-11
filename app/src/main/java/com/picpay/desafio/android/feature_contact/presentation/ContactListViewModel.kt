@@ -27,6 +27,8 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
     val saveContactListLiveData = saveContactListViewState.asLiveData()
     val clearContactListLiveData = clearContactListViewState.asLiveData()
 
+    var firstLaunch = true
+
     fun getContactList(isRefreshing: Boolean = false) {
         if (contactListViewState.value.isLoading()) return
 
@@ -37,10 +39,16 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
             ),
             onSuccess = {
                 when (it.isLocal) {
-                    true -> saveContactListLocally(it)
-                    false -> saveContactListViewState.postSuccess(Unit)
+                    true -> {
+                        saveContactListLocally(it)
+                    }
+                    false -> {
+                        saveContactListViewState.postSuccess(Unit)
+                    }
                 }
+                firstLaunch = false
                 contactListViewState.postSuccess(UserBindingMapper.fromDomain(it))
+                clearContactListViewState.postNeutral()
             },
             onError = {
                 contactListViewState.postError(it)
@@ -63,13 +71,9 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
         clearLocalUserListUseCase(
             onSuccess = {
                 clearContactListViewState.postSuccess(Unit)
+                contactListViewState.postNeutral()
+                saveContactListViewState.postNeutral()
             }
         )
-    }
-
-    fun clearViewState() {
-        contactListViewState.postNeutral()
-        saveContactListViewState.postNeutral()
-        clearContactListViewState.postNeutral()
     }
 }
