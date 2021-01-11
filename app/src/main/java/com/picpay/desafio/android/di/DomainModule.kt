@@ -1,5 +1,6 @@
 package com.picpay.desafio.android.di
 
+import com.picpay.desafio.android.domain.interactor.ClearLocalUserListUseCase
 import com.picpay.desafio.android.domain.interactor.GetUserListUseCase
 import com.picpay.desafio.android.domain.interactor.SaveUserListLocallyUseCase
 import com.picpay.desafio.android.domain.util.ThreadContextProvider
@@ -18,5 +19,9 @@ val domainModule = module {
 
     factory { (scope: CoroutineScope) ->
         SaveUserListLocallyUseCase(scope = scope, userRepositoryInterface = get())
+    }
+
+    factory { (scope: CoroutineScope) ->
+        ClearLocalUserListUseCase(scope = scope, userRepositoryInterface = get())
     }
 }

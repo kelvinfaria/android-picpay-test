@@ -26,10 +26,16 @@ class ContactListFragment : BaseFragment() {
 
     override fun setupView() {
         super.setupView()
-        viewModel.getContactList()
+        if (viewModel.firstLaunch) {
+            viewModel.getContactList()
+        }
 
         swipeContainer.setOnRefreshListener {
             viewModel.getContactList(isRefreshing = true)
+        }
+
+        clearListButton.setOnClickListener {
+            viewModel.clearLocalUserList()
         }
     }
 
@@ -49,8 +55,22 @@ class ContactListFragment : BaseFragment() {
                 showOptionDialog(
                     title = "Error",
                     message = "Deseja realizar uma nova requisição?",
-                    positveAction = { viewModel.getContactList(isRefreshing = true) }
+                    positiveAction = { viewModel.getContactList(isRefreshing = true) }
                 )
+            }
+        )
+
+        viewModel.saveContactListLiveData.onPostValue(owner,
+            onSuccess = {
+                clearListButton.setVisible()
+            }
+        )
+
+        viewModel.clearContactListLiveData.onPostValue(owner,
+            onSuccess = {
+                clearListButton.setGone()
+                userListAdapter.userList = listOf()
+                recyclerView.adapter = userListAdapter
             }
         )
     }

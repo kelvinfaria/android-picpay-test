@@ -7,4 +7,5 @@ interface UserRepositoryInterface {
 
     fun getUserList(isRefreshing: Boolean): Flow<UserList>
     fun saveUserListLocally(userList: UserList): Flow<Unit>
+    fun clearLocalUserList(): Flow<Unit>
 }

@@ -27,14 +27,14 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
     fun showSimpleDialog(
         title: String,
         message: String,
-        action: () -> Unit = {}
+        positiveAction: () -> Unit = {}
     ) {
         val builder = AlertDialog.Builder(requireContext())
         builder.apply {
             setTitle(title)
             setMessage(message)
             setPositiveButton("OK") { _, _ ->
-                action
+                positiveAction()
             }
             show()
         }
@@ -43,7 +43,7 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
     fun showOptionDialog(
         title: String,
         message: String,
-        positveAction: () -> Unit = {},
+        positiveAction: () -> Unit = {},
         negativeAction: () -> Unit = {}
     ) {
         val builder = AlertDialog.Builder(requireContext())
@@ -51,10 +51,10 @@ abstract class BaseFragment : Fragment(), ViewStateListener, KoinComponent {
             setTitle(title)
             setMessage(message)
             setPositiveButton("Sim") { _, _ ->
-                positveAction
+                positiveAction()
             }
             setNegativeButton("Não") { _, _ ->
-                negativeAction
+                negativeAction()
             }
             show()
         }

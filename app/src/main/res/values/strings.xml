@@ -4,6 +4,7 @@
     <string name="error">Ocorreu um erro. Tente novamente.</string>
     <string name="generic_error">Error: %1$s</string>
     <string name="empty_string"> </string>
+    <string name="clear_list_button_text">Limpar lista</string>
 
 
 </resources>

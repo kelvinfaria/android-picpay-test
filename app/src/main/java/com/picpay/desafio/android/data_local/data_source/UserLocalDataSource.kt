@@ -28,9 +28,23 @@ class UserLocalDataSource(
         )
 
         return when (userList) {
-            null -> null
-            else -> flow { emit(UserLocalMapper.toDomain(userList)) }
+            null -> {
+                null
+            }
+            else -> {
+                flow {
+                    emit(
+                        UserLocalMapper.toDomain(userList)
+                    )
+                }
+            }
         }
+    }
+
+    override fun clearLocalUserList(): Flow<Unit> = flow {
+        emit(
+            preferencesHelper.deleteKey(USER_LIST)
+        )
     }
 
     companion object {
